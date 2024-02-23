@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>resources/padlock.png</file>
+        <file>resources/opened_lock.png</file>
+    </qresource>
+</RCC>

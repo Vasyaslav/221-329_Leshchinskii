@@ -9,15 +9,10 @@
 #include <QJsonValue>
 #include <QDebug>
 
-class Cridential {
-public:
-    QString hostname;
-    QString login;
-    QString password;
-};
-
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -26,11 +21,16 @@ class MainWindow : public QMainWindow
 
 public:
     bool ReadJson();
+    void fillWidget(QString);
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_search_editingFinished();
 
 private:
     Ui::MainWindow *ui;
     QJsonArray m_jsonarray;
+    int decryptFile(const QByteArray&, QByteArray&);
 };
 #endif // MAINWINDOW_H

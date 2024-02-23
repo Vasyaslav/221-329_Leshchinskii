@@ -23,6 +23,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(crypt1
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        credentialswidget.h credentialswidget.cpp credentialswidget.ui
+        resources.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET crypt1 APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -44,18 +46,41 @@ endif()
 
 target_link_libraries(crypt1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
+# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
+# If you are developing for iOS or macOS you should consider setting an
+# explicit, fixed bundle identifier manually though.
+target_include_directories(
+    crypt1
+    PRIVATE
+    T:/PO/Qt/Tools/OpenSSL/Win_x64/include)
+target_link_libraries(
+    crypt1
+    PRIVATE
+    T:/PO/Qt/Tools/OpenSSL/Win_x64/lib/libcrypto.lib)
+
+if(${QT_VERSION} VERSION_LESS 6.1.0)
+  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.crypt1)
+endif()
 set_target_properties(crypt1 PROPERTIES
-    MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
+    ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
 
+include(GNUInstallDirs)
 install(TARGETS crypt1
     BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(crypt1)
 endif()
+
+configure_file(
+    credentials_enc.json
+    credentials_enc.json
+)
