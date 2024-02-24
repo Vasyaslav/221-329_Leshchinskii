@@ -58,14 +58,13 @@ void MainWindow::on_search_editingFinished()
 }
 
 int MainWindow::decryptFile(
-        const QByteArray &encryptedBytes,
-        QByteArray &decryptedBytes
-        )
+    const QByteArray &encryptedBytes,
+    QByteArray &decryptedBytes
+    )
 {
     // https://cryptii.com/pipes/aes-encryption
     // key: 20 a8 d0 4b 86 0a d3 4a a4 d1 a5 94 7c a2 db 2a b4 01 62 cd 3b 07 8d 61 71 76 85 83 f7 0e 7c 81
     // iv:  0c e9 ad 97 cf e4 d7 bb 84 86 1b 14 4b 69 62 d4
-    QByteArray hex = QByteArray::toHex(20a8d04b860ad34aa4d1a5947ca2db2ab40162cd3b078d6171768583f70e7c81);
+    // QByteArray hex = QByteArray::toHex(20a8d04b860ad34aa4d1a5947ca2db2ab40162cd3b078d6171768583f70e7c81);
     return 1;
 }
-

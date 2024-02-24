@@ -1,0 +1,18 @@
+# ninja log v5
+3	360	7304779859572072	crypt1_autogen/timestamp	a08dca72225080a0
+3	360	7304779859572072	crypt1_autogen/mocs_compilation.cpp	a08dca72225080a0
+3	360	7304779859572072	T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/timestamp	a08dca72225080a0
+3	360	7304779859572072	T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/mocs_compilation.cpp	a08dca72225080a0
+361	428	7304779860653160	crypt1_autogen/EWIEGA46WW/qrc_resources.cpp	9f01fbc590bbf711
+361	428	7304779860653160	T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/EWIEGA46WW/qrc_resources.cpp	9f01fbc590bbf711
+445	546	7304779861823462	CMakeFiles/crypt1.dir/crypt1_autogen/EWIEGA46WW/qrc_resources.cpp.obj	314ab070d443836a
+441	3879	7304779895071093	CMakeFiles/crypt1.dir/credentialswidget.cpp.obj	58f410f9d1470e92
+429	4443	7304779900682924	CMakeFiles/crypt1.dir/crypt1_autogen/mocs_compilation.cpp.obj	60431ab9e96286d8
+432	4511	7304779901471053	CMakeFiles/crypt1.dir/main.cpp.obj	1a4f1e679b111acf
+26	152	7304780076996450	crypt1_autogen/timestamp	a08dca72225080a0
+26	152	7304780076996450	crypt1_autogen/mocs_compilation.cpp	a08dca72225080a0
+26	152	7304780076996450	T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/timestamp	a08dca72225080a0
+26	152	7304780076996450	T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/mocs_compilation.cpp	a08dca72225080a0
+157	2104	7304780096466117	CMakeFiles/crypt1.dir/credentialswidget.cpp.obj	58f410f9d1470e92
+154	2860	7304780104067674	CMakeFiles/crypt1.dir/mainwindow.cpp.obj	c162d4c00a2b51b
+2860	3295	7304780108187449	crypt1.exe	efa617a003bafab9
