@@ -1,4 +1,4 @@
-# Install script for directory: T:/educ/4 sem/Cryptography/L1/crypt1
+# Install script for directory: D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/crypt1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +33,7 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1.exe")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -44,5 +44,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

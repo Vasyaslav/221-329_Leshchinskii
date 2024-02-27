@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QDebug>
+#include <openssl/evp.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

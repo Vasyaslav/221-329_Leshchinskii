@@ -1,8 +1,8 @@
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/edit_cache.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/rebuild_cache.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/list_install_components.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/install.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/install/local.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen_timestamp_deps.dir
-T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/edit_cache.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/list_install_components.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/install.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/install/local.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen_timestamp_deps.dir
+D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen.dir
