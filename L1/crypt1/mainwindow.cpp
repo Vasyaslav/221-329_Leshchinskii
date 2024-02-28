@@ -32,9 +32,9 @@ bool MainWindow::ReadJson()
     int ret_code = decryptFile(encryptedBytes, decryptedBytes);
     if (!ret_code)
         return false;
-
+    qDebug() << "*** decryptedBytes" << decryptedBytes;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(decryptedBytes);
-    qDebug() << decryptedBytes;
+    qDebug() << "*** jsonDoc" << jsonDoc;
     m_jsonarray = jsonDoc.object()["credentials"].toArray();
     for (auto item: m_jsonarray) {
         qDebug() << item.toObject()["login"];
@@ -50,7 +50,8 @@ void MainWindow::fillWidget(QString searchParam)
     for (int i = 0; i < m_jsonarray.size(); i ++) {
         if (m_jsonarray[i].toObject()["url"].toString().contains(searchParam.trimmed())) {
             QListWidgetItem *newItem = new QListWidgetItem();
-            credentialsWidget *itemWidget = new credentialsWidget(m_jsonarray[i].toObject()["url"].toString());
+            credentialsWidget *itemWidget = new credentialsWidget(m_jsonarray[i].toObject()["url"].toString(),
+                                                                  m_jsonarray[i].toObject()["logpass"].toString());
             newItem->setSizeHint(itemWidget->sizeHint());
             ui->credentialList->addItem(newItem);
             ui->credentialList->setItemWidget(newItem, itemWidget);
@@ -72,14 +73,14 @@ int MainWindow::decryptFile(
 {
     // Функция для расшифровки файла
     // https://cryptii.com/pipes/aes-encryption
-    // key: 20 a8 d0 4b 86 0a d3 4a a4 d1 a5 94 7c a2 db 2a b4 01 62 cd 3b 07 8d 61 71 76 85 83 f7 0e 7c 81
-    // iv:  0c e9 ad 97 cf e4 d7 bb 84 86 1b 14 4b 69 62 d4
-    QByteArray key_hex("20a8d04b860ad34aa4d1a5947ca2db2ab40162cd3b078d6171768583f70e7c81");
+    // key: 12 1c d5 8c a2 f4 08 5f c7 b7 b7 4b dd e0 b2 00 2c 31 13 ff 7a d3 cc 5f 19 da 87 0d 73 6e 24 f8
+    // iv:  d3 e3 40 51 e0 e6 e2 81 fe f4 ab bb 14 40 13 36
+    QByteArray key_hex("121cd58ca2f4085fc7b7b74bdde0b2002c3113ff7ad3cc5f19da870d736e24f8");
     QByteArray key_ba = QByteArray::fromHex(key_hex);
     unsigned char key[32] = {0};
     memcpy(key, key_ba.data(), 32);
 
-    QByteArray iv_hex("0ce9ad97cfe4d7bb84861b144b6962d4");
+    QByteArray iv_hex("d3e34051e0e6e281fef4abbb14401336");
     QByteArray iv_ba = QByteArray::fromHex(iv_hex);
     unsigned char iv[16] = {0};
     memcpy(iv, iv_ba.data(), 16);
@@ -105,13 +106,14 @@ int MainWindow::decryptFile(
             EVP_CIPHER_CTX_free(ctx);
             return 0;
         }
-        dec_stream << QByteArray(reinterpret_cast<char*>(dec_buffer), dec_len);
+        dec_stream.writeRawData(reinterpret_cast<char*>(dec_buffer), dec_len);
         enc_len = enc_stream.readRawData(reinterpret_cast<char*>(enc_buffer), buffer_len);
     }
     if (!EVP_DecryptFinal_ex(ctx, dec_buffer, &dec_len)) {
         EVP_CIPHER_CTX_free(ctx);
         return 0;
     }
+    dec_stream.writeRawData(reinterpret_cast<char*>(dec_buffer), dec_len);
     EVP_CIPHER_CTX_free(ctx);
     return 1;
 }

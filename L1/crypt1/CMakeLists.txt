@@ -54,11 +54,11 @@ target_link_libraries(crypt1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_include_directories(
     crypt1
     PRIVATE
-    D:/PO/Qt/Tools/OpenSSLv3/Win_x64/include)
+    T:/PO/Qt/Tools/OpenSSLv3/Win_x64/include)
 target_link_libraries(
     crypt1
     PRIVATE
-    D:/PO/Qt/Tools/OpenSSLv3/Win_x64/lib/libcrypto.lib)
+    T:/PO/Qt/Tools/OpenSSLv3/Win_x64/lib/libcrypto.lib)
 
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
@@ -82,6 +82,11 @@ install(TARGETS crypt1
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(crypt1)
 endif()
+
+configure_file(
+    credentials_enc2.json
+    credentials_enc2.json
+)
 
 configure_file(
     credentials_enc.json

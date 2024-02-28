@@ -33,7 +33,7 @@ public:
     {
         if (credentialsWidget->objectName().isEmpty())
             credentialsWidget->setObjectName("credentialsWidget");
-        credentialsWidget->resize(887, 78);
+        credentialsWidget->resize(887, 82);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -58,12 +58,14 @@ public:
         login = new QLineEdit(credentialsWidget);
         login->setObjectName("login");
         login->setEchoMode(QLineEdit::Password);
+        login->setReadOnly(true);
 
         gridLayout->addWidget(login, 1, 1, 1, 1);
 
         password = new QLineEdit(credentialsWidget);
         password->setObjectName("password");
         password->setEchoMode(QLineEdit::Password);
+        password->setReadOnly(true);
 
         gridLayout->addWidget(password, 1, 2, 1, 1);
 

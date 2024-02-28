@@ -1,23 +1,23 @@
 {
-	"BUILD_DIR" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen",
-	"CMAKE_BINARY_DIR" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/crypt1",
-	"CMAKE_SOURCE_DIR" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/crypt1",
-	"INCLUDE_DIR" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/include",
+	"BUILD_DIR" : "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen",
+	"CMAKE_BINARY_DIR" : "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "T:/educ/4 sem/Cryptography/L1/crypt1",
+	"CMAKE_SOURCE_DIR" : "T:/educ/4 sem/Cryptography/L1/crypt1",
+	"INCLUDE_DIR" : "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/crypt1_autogen/include",
 	"INPUTS" : 
 	[
-		"D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/crypt1/resources/opened_lock.png",
-		"D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/crypt1/resources/padlock.png"
+		"T:/educ/4 sem/Cryptography/L1/crypt1/resources/opened_lock.png",
+		"T:/educ/4 sem/Cryptography/L1/crypt1/resources/padlock.png"
 	],
-	"LOCK_FILE" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"LOCK_FILE" : "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "--no-zstd", "-name", "resources" ],
 	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
 	"OUTPUT_NAME" : "qrc_resources.cpp",
-	"RCC_EXECUTABLE" : "D:/PO/Qt/6.6.2/msvc2019_64/./bin/rcc.exe",
+	"RCC_EXECUTABLE" : "T:/PO/Qt/6.6.2/msvc2019_64/./bin/rcc.exe",
 	"RCC_LIST_OPTIONS" : [ "--list" ],
-	"SETTINGS_FILE" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
-	"SOURCE" : "D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/crypt1/resources.qrc",
+	"SETTINGS_FILE" : "T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug/CMakeFiles/crypt1_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "T:/educ/4 sem/Cryptography/L1/crypt1/resources.qrc",
 	"VERBOSITY" : 0
 }
