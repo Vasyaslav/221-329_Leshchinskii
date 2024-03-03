@@ -9,6 +9,7 @@
 #include <QJsonValue>
 #include <QDebug>
 #include <openssl/evp.h>
+#include <QCryptographicHash>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,7 +22,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    bool ReadJson();
+    bool ReadJson(const QByteArray & aes256_key);
     void fillWidget(QString);
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -29,9 +30,13 @@ public:
 private slots:
     void on_search_editingFinished();
 
+    void on_edtPin_returnPressed();
+
 private:
     Ui::MainWindow *ui;
     QJsonArray m_jsonarray;
-    int decryptFile(const QByteArray&, QByteArray&);
+    int decryptFile(const QByteArray & aes256_key,
+                    const QByteArray&,
+                    QByteArray&);
 };
 #endif // MAINWINDOW_H

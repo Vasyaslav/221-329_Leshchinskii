@@ -7,8 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    qDebug() << ReadJson();
-    qDebug() << m_jsonarray;
+
+    // qDebug() << m_jsonarray;
     fillWidget("");
 
 }
@@ -18,10 +18,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-bool MainWindow::ReadJson()
+bool MainWindow::ReadJson(const QByteArray & aes256_key)
 {
     // Считывание из json файла
-    QFile jsonFile("credentials_enc.json");
+    QFile jsonFile("credentials_enc2.json");
     jsonFile.open(QFile::ReadOnly);
     if (!jsonFile.isOpen())
         return false;
@@ -29,16 +29,18 @@ bool MainWindow::ReadJson()
     QByteArray hexEcryptedBytes = jsonFile.readAll();
     QByteArray encryptedBytes = QByteArray::fromHex(hexEcryptedBytes);
     QByteArray decryptedBytes;
-    int ret_code = decryptFile(encryptedBytes, decryptedBytes);
+    int ret_code = decryptFile(aes256_key, encryptedBytes, decryptedBytes);
     if (!ret_code)
         return false;
-    qDebug() << "*** decryptedBytes" << decryptedBytes;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(decryptedBytes);
-    qDebug() << "*** jsonDoc" << jsonDoc;
-    m_jsonarray = jsonDoc.object()["credentials"].toArray();
+
+    QJsonParseError * p_jsonErr;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(decryptedBytes, p_jsonErr);
+    if (p_jsonErr->error != QJsonParseError::NoError)
+        return false;
+    m_jsonarray = jsonDoc.object()["credentials"].toArray(); /*
     for (auto item: m_jsonarray) {
         qDebug() << item.toObject()["login"];
-    }
+    } */
     jsonFile.close();
 
     return true;
@@ -67,6 +69,7 @@ void MainWindow::on_search_editingFinished()
 }
 
 int MainWindow::decryptFile(
+    const QByteArray & aes256_key,
     const QByteArray &encryptedBytes,
     QByteArray &decryptedBytes
     )
@@ -75,10 +78,10 @@ int MainWindow::decryptFile(
     // https://cryptii.com/pipes/aes-encryption
     // key: 12 1c d5 8c a2 f4 08 5f c7 b7 b7 4b dd e0 b2 00 2c 31 13 ff 7a d3 cc 5f 19 da 87 0d 73 6e 24 f8
     // iv:  d3 e3 40 51 e0 e6 e2 81 fe f4 ab bb 14 40 13 36
-    QByteArray key_hex("121cd58ca2f4085fc7b7b74bdde0b2002c3113ff7ad3cc5f19da870d736e24f8");
-    QByteArray key_ba = QByteArray::fromHex(key_hex);
+    // QByteArray key_hex("121cd58ca2f4085fc7b7b74bdde0b2002c3113ff7ad3cc5f19da870d736e24f8");
+    // QByteArray key_ba = QByteArray::fromHex(key_hex);
     unsigned char key[32] = {0};
-    memcpy(key, key_ba.data(), 32);
+    memcpy(key, aes256_key.data(), 32);
 
     QByteArray iv_hex("d3e34051e0e6e281fef4abbb14401336");
     QByteArray iv_ba = QByteArray::fromHex(iv_hex);
@@ -117,3 +120,25 @@ int MainWindow::decryptFile(
     EVP_CIPHER_CTX_free(ctx);
     return 1;
 }
+
+void MainWindow::on_edtPin_returnPressed()
+{
+    //Использовать пин-код
+    QByteArray hash = QCryptographicHash::hash(
+        ui->edtPin->text().toUtf8(),
+        QCryptographicHash::Sha256);
+    qDebug() << "*** sha256 " << hash;
+    // TODO расшифровать файл и проверить верность пин-кода
+    // qDebug() << ReadJson(hash);
+    if (ReadJson(hash)) { // Проверить что после расшифровки - норм json
+        ui->stackedWidget->setCurrentIndex(0);
+    } else { // А если не так то сказать что пин-код неверный
+        ui->labelLogin->setText("Неверный пин-код");
+        ui->labelLogin->setStyleSheet("color:red;");
+    }
+    ui->edtPin->setText(QString().fill('*', ui->edtPin->text().size()));
+    ui->edtPin->clear();
+    hash.setRawData(const_cast<char*>(QByteArray().fill('*', 32).data()), 32);
+    hash = QByteArray();
+}
+

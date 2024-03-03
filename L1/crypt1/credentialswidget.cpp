@@ -35,12 +35,20 @@ void credentialsWidget::changeLockState()
     else lockState = true;
     if (lockState) {
         ui->icon->setPixmap(lockedImage->scaled(49, 60, Qt::KeepAspectRatio));
+        QByteArray encBytes = QByteArray::fromHex(this->logpass.toUtf8());
         QByteArray decBytes;
-        decryptFile(this->logpass.toUtf8(), decBytes);
-        qDebug() << "*** logpass" << decBytes;
+        decryptFile(encBytes, decBytes);
+        QJsonObject json = QJsonDocument::fromJson(decBytes).object();
+        qDebug() << "*** logpass" << json;
+        this->ui->login->setText(json["login"].toString());
+        this->ui->login->setEchoMode(QLineEdit::Normal);
+        this->ui->password->setText(json["password"].toString());
+        this->ui->password->setEchoMode(QLineEdit::Normal);
     }
     else {
         ui->icon->setPixmap(unlockedImage->scaled(49, 60, Qt::KeepAspectRatio));
+        this->ui->login->setEchoMode(QLineEdit::Password);
+        this->ui->password->setEchoMode(QLineEdit::Password);
     }
 }
 
