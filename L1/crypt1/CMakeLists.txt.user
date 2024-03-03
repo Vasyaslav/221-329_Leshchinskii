@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.2, 2024-02-27T19:20:30. -->
+<!-- Written by QtCreator 12.0.2, 2024-02-28T20:18:20. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{3c02bbf9-235c-420b-b5ff-3d971d1d37a7}</value>
+  <value type="QByteArray">{ed2f1aa1-0793-43ad-904b-5a4b545107b5}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -76,7 +76,7 @@
     <value type="bool" key="ClangTools.AnalyzeOpenFiles">true</value>
     <value type="bool" key="ClangTools.BuildBeforeAnalysis">true</value>
     <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
-    <value type="int" key="ClangTools.ParallelJobs">4</value>
+    <value type="int" key="ClangTools.ParallelJobs">6</value>
     <value type="bool" key="ClangTools.PreferConfigFile">true</value>
     <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
     <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
@@ -108,7 +108,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">T:\educ\4 sem\Cryptography\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Education\4 semester\Cryptography\221-329_Leshchinskii\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -164,7 +164,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">T:\educ\4 sem\Cryptography\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Release</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Education\4 semester\Cryptography\221-329_Leshchinskii\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -218,7 +218,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">T:\educ\4 sem\Cryptography\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-RelWithDebInfo</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Education\4 semester\Cryptography\221-329_Leshchinskii\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -273,7 +273,7 @@
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
     <value type="int" key="EnableQmlDebugging">0</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">T:\educ\4 sem\Cryptography\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Profile</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Education\4 semester\Cryptography\221-329_Leshchinskii\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Profile</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -327,7 +327,7 @@
 -DCMAKE_C_COMPILER:FILEPATH=%{Compiler:Executable:C}
 -DCMAKE_CXX_COMPILER:FILEPATH=%{Compiler:Executable:Cxx}
 -DCMAKE_CXX_FLAGS_INIT:STRING=%{Qt:QML_DEBUG_FLAG}</value>
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">T:\educ\4 sem\Cryptography\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-MinSizeRel</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">D:\Education\4 semester\Cryptography\221-329_Leshchinskii\L1\build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="QString" key="CMakeProjectManager.MakeStep.BuildPreset"></value>
@@ -398,7 +398,7 @@
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">T:/educ/4 sem/Cryptography/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">D:/Education/4 semester/Cryptography/221-329_Leshchinskii/L1/build-crypt1-Desktop_Qt_6_6_2_MSVC2019_64bit-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

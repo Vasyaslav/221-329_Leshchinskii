@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QPixmap>
+#include <QJsonObject>
+#include <QJsonDocument>
 #include <openssl/evp.h>
 
 namespace Ui {

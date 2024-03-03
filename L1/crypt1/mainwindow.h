@@ -32,6 +32,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QJsonArray m_jsonarray;
-    int decryptFile(const QByteArray&, QByteArray&);
+    int decryptFile(const QByteArray &, QByteArray&);
 };
 #endif // MAINWINDOW_H

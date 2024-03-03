@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     qDebug() << ReadJson();
-    qDebug() << m_jsonarray;
+    // qDebug() << m_jsonarray;
     fillWidget("");
 
 }
@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 bool MainWindow::ReadJson()
 {
     // Считывание из json файла
-    QFile jsonFile("credentials_enc.json");
+    QFile jsonFile("credentials_enc2.json");
     jsonFile.open(QFile::ReadOnly);
     if (!jsonFile.isOpen())
         return false;
@@ -32,13 +32,9 @@ bool MainWindow::ReadJson()
     int ret_code = decryptFile(encryptedBytes, decryptedBytes);
     if (!ret_code)
         return false;
-    qDebug() << "*** decryptedBytes" << decryptedBytes;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(decryptedBytes);
-    qDebug() << "*** jsonDoc" << jsonDoc;
+    // qDebug() << "*** jsonDoc" << jsonDoc;
     m_jsonarray = jsonDoc.object()["credentials"].toArray();
-    for (auto item: m_jsonarray) {
-        qDebug() << item.toObject()["login"];
-    }
     jsonFile.close();
 
     return true;

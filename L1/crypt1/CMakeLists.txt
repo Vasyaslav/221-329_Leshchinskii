@@ -54,11 +54,11 @@ target_link_libraries(crypt1 PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_include_directories(
     crypt1
     PRIVATE
-    T:/PO/Qt/Tools/OpenSSLv3/Win_x64/include)
+    D:/PO/Qt/Tools/OpenSSLv3/Win_x64/include)
 target_link_libraries(
     crypt1
     PRIVATE
-    T:/PO/Qt/Tools/OpenSSLv3/Win_x64/lib/libcrypto.lib)
+    D:/PO/Qt/Tools/OpenSSLv3/Win_x64/lib/libcrypto.lib)
 
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
