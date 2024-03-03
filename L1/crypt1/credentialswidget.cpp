@@ -34,21 +34,25 @@ void credentialsWidget::changeLockState()
     if (lockState) lockState = false;
     else lockState = true;
     if (lockState) {
+        qDebug() << "заблокировано";
         ui->icon->setPixmap(lockedImage->scaled(49, 60, Qt::KeepAspectRatio));
-        QByteArray encBytes = QByteArray::fromHex(this->logpass.toUtf8());
-        QByteArray decBytes;
-        decryptFile(encBytes, decBytes);
-        QJsonObject json = QJsonDocument::fromJson(decBytes).object();
-        qDebug() << "*** logpass" << json;
-        this->ui->login->setText(json["login"].toString());
-        this->ui->login->setEchoMode(QLineEdit::Normal);
-        this->ui->password->setText(json["password"].toString());
-        this->ui->password->setEchoMode(QLineEdit::Normal);
+        this->ui->login->setText("......");
+        this->ui->login->setEchoMode(QLineEdit::Password);
+        this->ui->password->setText("......");
+        this->ui->password->setEchoMode(QLineEdit::Password);
     }
     else {
+        qDebug() << "разблокировано";
         ui->icon->setPixmap(unlockedImage->scaled(49, 60, Qt::KeepAspectRatio));
-        this->ui->login->setEchoMode(QLineEdit::Password);
-        this->ui->password->setEchoMode(QLineEdit::Password);
+        QByteArray enc_string = QByteArray::fromHex(this->logpass.toUtf8());
+        QByteArray dec_string;
+        decryptFile(enc_string, dec_string);
+        QJsonObject json_obj = QJsonDocument::fromJson(dec_string).object();
+        qDebug() << "*** logpass2" << json_obj;
+        this->ui->login->setText(json_obj["login"].toString());
+        this->ui->login->setEchoMode(QLineEdit::Normal);
+        this->ui->password->setText(json_obj["password"].toString());
+        this->ui->password->setEchoMode(QLineEdit::Normal);
     }
 }
 

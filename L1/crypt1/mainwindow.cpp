@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     // qDebug() << m_jsonarray;
     fillWidget("");
 

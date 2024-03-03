@@ -35,8 +35,12 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QJsonArray m_jsonarray;
+<<<<<<< HEAD
     int decryptFile(const QByteArray & aes256_key,
                     const QByteArray&,
                     QByteArray&);
+=======
+    int decryptFile(const QByteArray &, QByteArray&);
+>>>>>>> 81f56eaa79414baa99c0efea131872945b281f93
 };
 #endif // MAINWINDOW_H
