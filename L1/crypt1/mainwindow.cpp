@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     // qDebug() << m_jsonarray;
-    fillWidget("");
-
 }
 
 MainWindow::~MainWindow()
@@ -32,9 +30,9 @@ bool MainWindow::ReadJson(const QByteArray & aes256_key)
     if (!ret_code)
         return false;
 
-    QJsonParseError * p_jsonErr;
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(decryptedBytes, p_jsonErr);
-    if (p_jsonErr->error != QJsonParseError::NoError)
+    QJsonParseError p_jsonErr;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(decryptedBytes, &p_jsonErr);
+    if (p_jsonErr.error != QJsonParseError::NoError)
         return false;
     m_jsonarray = jsonDoc.object()["credentials"].toArray(); /*
     for (auto item: m_jsonarray) {
@@ -76,13 +74,13 @@ int MainWindow::decryptFile(
     // Функция для расшифровки файла
     // https://cryptii.com/pipes/aes-encryption
     // key: 12 1c d5 8c a2 f4 08 5f c7 b7 b7 4b dd e0 b2 00 2c 31 13 ff 7a d3 cc 5f 19 da 87 0d 73 6e 24 f8
-    // iv:  d3 e3 40 51 e0 e6 e2 81 fe f4 ab bb 14 40 13 36
+    // iv:  d4 34 d6 21 f1 1c d3 e4 17 ad 12 30 ab 96 9e 23
     // QByteArray key_hex("121cd58ca2f4085fc7b7b74bdde0b2002c3113ff7ad3cc5f19da870d736e24f8");
     // QByteArray key_ba = QByteArray::fromHex(key_hex);
     unsigned char key[32] = {0};
     memcpy(key, aes256_key.data(), 32);
 
-    QByteArray iv_hex("d3e34051e0e6e281fef4abbb14401336");
+    QByteArray iv_hex("d434d621f11cd3e417ad1230ab969e23");
     QByteArray iv_ba = QByteArray::fromHex(iv_hex);
     unsigned char iv[16] = {0};
     memcpy(iv, iv_ba.data(), 16);
@@ -126,7 +124,7 @@ void MainWindow::on_edtPin_returnPressed()
     QByteArray hash = QCryptographicHash::hash(
         ui->edtPin->text().toUtf8(),
         QCryptographicHash::Sha256);
-    qDebug() << "*** sha256 " << hash;
+    qDebug() << "*** sha256 " << hash.toHex();
     // TODO расшифровать файл и проверить верность пин-кода
     // qDebug() << ReadJson(hash);
     if (ReadJson(hash)) { // Проверить что после расшифровки - норм json
@@ -139,5 +137,6 @@ void MainWindow::on_edtPin_returnPressed()
     ui->edtPin->clear();
     hash.setRawData(const_cast<char*>(QByteArray().fill('*', 32).data()), 32);
     hash = QByteArray();
+    fillWidget("");
 }
 

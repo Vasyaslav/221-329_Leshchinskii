@@ -89,6 +89,6 @@ configure_file(
 )
 
 configure_file(
-    credentials_enc.json
-    credentials_enc.json
+    credentials.json
+    credentials.json
 )
