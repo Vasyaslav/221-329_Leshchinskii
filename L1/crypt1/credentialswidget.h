@@ -16,18 +16,25 @@ class credentialsWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit credentialsWidget(const QString &url, const QString &logpass, QWidget *parent = nullptr);
+    explicit credentialsWidget(const QString &url, const int id, QWidget *parent = nullptr);
     ~credentialsWidget();
 
+    enum FIELD {
+        LOGIN, PASSWORD
+    };
+
+private slots:
+    void on_loginCopy_clicked();
+
+    void on_passwordCopy_clicked();
+
+
+signals:
+    void decryptLogOrPass(int id, FIELD field);
+
 private:
-    QString logpass;
     Ui::credentialsWidget *ui;
-    bool lockState;
-    QPixmap *lockedImage;
-    QPixmap *unlockedImage;
-    bool eventFilter(QObject *object, QEvent *event);
-    void changeLockState();
-    int decryptFile(const QByteArray &encryptedBytes, QByteArray &decryptedBytes);
+    int m_id = -1;
 };
 
 #endif // CREDENTIALSWIDGET_H

@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "credentialswidget.h"
 #include "./ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -15,9 +14,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+bool MainWindow::decryptLoginPassword(QJsonObject &loginPassword, const QByteArray &aes256_key)
+{
+    // Функция для расшифровки конкретного логина И пароля
+    QJsonParseError p_jsonErr;
+    QByteArray encrString = QByteArray::fromHex(m_jsonarray[m_id].toObject()["logpass"].toString().toUtf8());
+    QByteArray decrString;
+    decryptByteArray(aes256_key, encrString, decrString);
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(decrString, &p_jsonErr);
+    if (p_jsonErr.error != QJsonParseError::NoError) {
+        return false;
+    }
+    loginPassword = jsonDoc.object();
+    return true;
+}
+
 bool MainWindow::ReadJson(const QByteArray & aes256_key)
 {
-    // Считывание из json файла
+    // Функция для заполнения m_jsonarray расшифрованным .json файлом
     QFile jsonFile("credentials_enc2.json");
     jsonFile.open(QFile::ReadOnly);
     if (!jsonFile.isOpen())
@@ -26,7 +40,7 @@ bool MainWindow::ReadJson(const QByteArray & aes256_key)
     QByteArray hexEcryptedBytes = jsonFile.readAll();
     QByteArray encryptedBytes = QByteArray::fromHex(hexEcryptedBytes);
     QByteArray decryptedBytes;
-    int ret_code = decryptFile(aes256_key, encryptedBytes, decryptedBytes);
+    int ret_code = decryptByteArray(aes256_key, encryptedBytes, decryptedBytes);
     if (!ret_code)
         return false;
 
@@ -46,11 +60,12 @@ bool MainWindow::ReadJson(const QByteArray & aes256_key)
 void MainWindow::fillWidget(QString searchParam)
 {
     // Функция выводящая только те виджеты, которые содержат подстроку из строки поиска в названии сайта
+    ui->credentialList->clear();
     for (int i = 0; i < m_jsonarray.size(); i ++) {
         if (m_jsonarray[i].toObject()["url"].toString().contains(searchParam.trimmed())) {
             QListWidgetItem *newItem = new QListWidgetItem();
-            credentialsWidget *itemWidget = new credentialsWidget(m_jsonarray[i].toObject()["url"].toString(),
-                                                                  m_jsonarray[i].toObject()["logpass"].toString());
+            credentialsWidget *itemWidget = new credentialsWidget(m_jsonarray[i].toObject()["url"].toString(), i);
+            QObject::connect(itemWidget, &credentialsWidget::decryptLogOrPass, this, &MainWindow::decryptLogOrPass);
             newItem->setSizeHint(itemWidget->sizeHint());
             ui->credentialList->addItem(newItem);
             ui->credentialList->setItemWidget(newItem, itemWidget);
@@ -61,17 +76,16 @@ void MainWindow::fillWidget(QString searchParam)
 void MainWindow::on_search_editingFinished()
 {
     // Функция вызывающаяся когда пользователь нажимает "enter" в строке поиска
-    ui->credentialList->clear();
     fillWidget(ui->search->text());
 }
 
-int MainWindow::decryptFile(
+int MainWindow::decryptByteArray(
     const QByteArray & aes256_key,
     const QByteArray &encryptedBytes,
     QByteArray &decryptedBytes
     )
 {
-    // Функция для расшифровки файла
+    // Функция для QByteArray
     // https://cryptii.com/pipes/aes-encryption
     // key: 12 1c d5 8c a2 f4 08 5f c7 b7 b7 4b dd e0 b2 00 2c 31 13 ff 7a d3 cc 5f 19 da 87 0d 73 6e 24 f8
     // iv:  d4 34 d6 21 f1 1c d3 e4 17 ad 12 30 ab 96 9e 23
@@ -120,23 +134,47 @@ int MainWindow::decryptFile(
 
 void MainWindow::on_edtPin_returnPressed()
 {
-    //Использовать пин-код
+    // Функция проверяющая правильность введённого пин-кода и регулирующая что надо расшифровать
+    // - весь файл, если пин-код вводят первый раз, или конкретный логин/пароль
     QByteArray hash = QCryptographicHash::hash(
         ui->edtPin->text().toUtf8(),
         QCryptographicHash::Sha256);
     qDebug() << "*** sha256 " << hash.toHex();
-    // TODO расшифровать файл и проверить верность пин-кода
-    // qDebug() << ReadJson(hash);
-    if (ReadJson(hash)) { // Проверить что после расшифровки - норм json
-        ui->stackedWidget->setCurrentIndex(0);
-    } else { // А если не так то сказать что пин-код неверный
-        ui->labelLogin->setText("Неверный пин-код");
-        ui->labelLogin->setStyleSheet("color:red;");
+    if (this->m_id == -1) {
+        if (ReadJson(hash)) { // Проверить что после расшифровки - норм json
+            ui->stackedWidget->setCurrentIndex(0);
+        } else { // А если не так то сказать что пин-код неверный
+            ui->labelLogin->setText("Неверный пин-код");
+            ui->labelLogin->setStyleSheet("color:red;");
+        }
+        fillWidget("");
+    } else {
+        QJsonObject decryptedJsonObject;
+        if (!decryptLoginPassword(decryptedJsonObject, hash)) {
+            ui->labelLogin->setText("Неверный пин-код");
+            ui->labelLogin->setStyleSheet("color:red;");
+        } else {
+            if (this->m_field == credentialsWidget::LOGIN) {
+                QGuiApplication::clipboard()->setText(decryptedJsonObject["login"].toString());
+            } else {
+                QGuiApplication::clipboard()->setText(decryptedJsonObject["password"].toString());
+            }
+            ui->stackedWidget->setCurrentIndex(0);
+        }
     }
     ui->edtPin->setText(QString().fill('*', ui->edtPin->text().size()));
     ui->edtPin->clear();
     hash.setRawData(const_cast<char*>(QByteArray().fill('*', 32).data()), 32);
     hash = QByteArray();
-    fillWidget("");
 }
 
+void MainWindow::decryptLogOrPass(int id, credentialsWidget::FIELD field)
+{
+    // Слот принимающий сигнал для расшифровки и копирования конкретного логина/пароля
+    qDebug() << "*** текущей id - " << id;
+    ui->labelLogin->setText("Введите пин-код");
+    ui->labelLogin->setStyleSheet("");
+    this->m_id = id;
+    this->m_field = field;
+    ui->stackedWidget->setCurrentIndex(1);
+}
