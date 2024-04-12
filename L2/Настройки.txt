@@ -1,0 +1,2 @@
+Правило в брандамуэре - cryptLab2Port50000
+fltmc load PassThrough
