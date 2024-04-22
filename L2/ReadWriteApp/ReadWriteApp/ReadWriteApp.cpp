@@ -1,33 +1,33 @@
 ﻿// ReadWriteApp.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <fstream>
+#include <stdio.h>
 #include <string>
 
 int main()
 {
-    std::string file_content;
-    std::ifstream in("hello.crypt_lab2");
+    char file_content[166];
+    FILE* file;
+    file = fopen("hello.crypt_lab2", "r");
     std::cout << "Current file text:" << std::endl;
-    if (in.is_open())
+    if (file != NULL)
     {
-        while (std::getline(in, file_content))
-        {
-            std::cout << file_content << std::endl;
-        }
+        fread(&file_content, sizeof(char[166]), 1, file);
+        std::cout << file_content << std::endl;
+        fclose(file);
     }
-    in.close();
-    std::ofstream file_writing;          // поток для записи
-    file_writing.open("hello.crypt_lab2");      // открываем файл для записи
-    std::cout << "File will contain following text: Hello World!" << std::endl;
-    if (file_writing.is_open())
+    file = fopen("hello.crypt_lab2", "w");  // открываем файл для записи     
+    std::cout << "File will contain part of lorem ipsum text" << std::endl;
+    char lorem_ipsum[166] = "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et.";
+    if (file != NULL)
     {
-        file_writing << "Hello World!" << std::endl;
+        fwrite(lorem_ipsum, sizeof (lorem_ipsum), 1, file);
+        fclose(file);
     }
-    file_writing.close();
     std::cout << "File has been written. You can close this window" << std::endl;
-    std::cin >> file_content;
+    std::string skipper;
+    std::cin >> skipper;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
