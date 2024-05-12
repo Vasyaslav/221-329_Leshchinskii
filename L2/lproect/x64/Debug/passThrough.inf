@@ -10,7 +10,7 @@ Signature   = "$Windows NT$"
 Class       = "ActivityMonitor"                         ;This is determined by the work this filter driver does
 ClassGuid   = {b86dff51-a31e-4bac-b3cf-e8cfe75c9fc2}    ;This value is determined by the Class
 Provider    = %ProviderString%
-DriverVer = 04/16/2024,18.57.55.223
+DriverVer = 05/03/2024,15.56.41.645
 CatalogFile = passthrough.cat
 
 
@@ -38,8 +38,8 @@ DelFiles   = MiniFilter.DriverFiles
 LegacyUninstall=1
 
 [DefaultUninstall.NTamd64.Services]
-LegacyUninstall=1
 DelService = %ServiceName%,0x200      ;Ensure service is stopped before deleting
+LegacyUninstall=1
 
 ;
 ; Services Section
@@ -94,6 +94,6 @@ DiskId1                 = "PassThrough Device Installation Disk"
 ;Instances specific information.
 DefaultInstance         = "PassThrough Instance"
 Instance1.Name          = "PassThrough Instance"
-Instance1.Altitude      = "370030"
+Instance1.Altitude      = "140101"
 Instance1.Flags         = 0x0              ; Allow all attachments
 

@@ -7,19 +7,19 @@
 
 int main()
 {
-    char file_content[166];
+    char file_content[48];
     FILE* file;
-    file = fopen("hello.crypt_lab2", "r");
+    errno_t err = fopen_s(&file, "hello.crypt_lab2", "r");
     std::cout << "Current file text:" << std::endl;
     if (file != NULL)
     {
-        fread(&file_content, sizeof(char[166]), 1, file);
+        fread_s(&file_content, sizeof(char[48]), sizeof(char), 48, file);
         std::cout << file_content << std::endl;
         fclose(file);
     }
-    file = fopen("hello.crypt_lab2", "w");  // открываем файл для записи     
+    err = fopen_s(&file, "hello.crypt_lab2", "w");;  // открываем файл для записи     
     std::cout << "File will contain part of lorem ipsum text" << std::endl;
-    char lorem_ipsum[166] = "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et.";
+    char lorem_ipsum[48] = "Sed ut perspiciatis, unde omnis iste natus edao";
     if (file != NULL)
     {
         fwrite(lorem_ipsum, sizeof (lorem_ipsum), 1, file);

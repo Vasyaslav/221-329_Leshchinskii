@@ -5,6 +5,20 @@
     {
       "AbsoluteMoniker": "D:0:0:{D8B8DA25-0E6D-4631-8B25-DBF5B10B45AD}|passThrough.vcxproj|T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\passThrough.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{D8B8DA25-0E6D-4631-8B25-DBF5B10B45AD}|passThrough.vcxproj|solutionrelative:passThrough.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8B8DA25-0E6D-4631-8B25-DBF5B10B45AD}|passThrough.vcxproj|T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\aes.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D8B8DA25-0E6D-4631-8B25-DBF5B10B45AD}|passThrough.vcxproj|solutionrelative:aes.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8B8DA25-0E6D-4631-8B25-DBF5B10B45AD}|passThrough.vcxproj|T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\aes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{D8B8DA25-0E6D-4631-8B25-DBF5B10B45AD}|passThrough.vcxproj|solutionrelative:aes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.31.31103\\include\\vcruntime.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.31.31103\\include\\stdint.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +28,54 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "aes.c",
+              "DocumentMoniker": "T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\aes.c",
+              "RelativeDocumentMoniker": "aes.c",
+              "ToolTip": "T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\aes.c",
+              "RelativeToolTip": "aes.c",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2024-05-03T12:24:07.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "aes.h",
+              "DocumentMoniker": "T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\aes.h",
+              "RelativeDocumentMoniker": "aes.h",
+              "ToolTip": "T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\aes.h",
+              "RelativeToolTip": "aes.h",
+              "ViewState": "AQIAADAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-03T12:18:18.064Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "vcruntime.h",
+              "DocumentMoniker": "D:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.31.31103\\include\\vcruntime.h",
+              "ToolTip": "D:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.31.31103\\include\\vcruntime.h [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]",
+              "ViewState": "AQIAADEAAAAAAAAAAAAtwDwAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-03T11:58:37.045Z",
+              "EditorCaption": " [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "stdint.h",
+              "DocumentMoniker": "D:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.31.31103\\include\\stdint.h",
+              "ToolTip": "D:\\Program Files\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.31.31103\\include\\stdint.h [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-05-03T11:57:37.982Z",
+              "EditorCaption": " [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +84,7 @@
               "RelativeDocumentMoniker": "passThrough.c",
               "ToolTip": "T:\\educ\\4 sem\\Cryptography\\L2\\lproect\\passThrough.c",
               "RelativeToolTip": "passThrough.c",
-              "ViewState": "AQIAAAwDAAAAAAAAAAAlwCQDAAAQAAAA",
+              "ViewState": "AQIAAHgDAAAAAAAAAAAAAL8CAABzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2024-04-02T11:11:48.249Z",
               "EditorCaption": ""

@@ -21,6 +21,12 @@ Environment:
 #include <fltKernel.h>
 #include <dontuse.h>
 #include <suppress.h>
+#include <ntddk.h>
+#include "aes.h"
+
+unsigned char key[] = { 0x04, 0x9a, 0x1d, 0x22, 0x0e, 0x28, 0xf0, 0x09, 0xf2, 0xa9, 0xfd, 0xdc, 0x5a, 0x0b, 0x7a, 0x42, 0x1c,
+					0xb5, 0xb6, 0x42, 0xe2, 0xfb, 0x46, 0x4a, 0xd3, 0x86, 0x20, 0xa1, 0xc6, 0x20, 0x74, 0xc6 };
+unsigned char iv[] = { 0x96, 0x38, 0x72, 0x5e, 0x2b, 0xfc, 0x8a, 0x49, 0xf0, 0x46, 0xc9, 0x85, 0x71, 0xf5, 0xae, 0x2b };
 
 #pragma prefast(disable:__WARNING_ENCODE_MEMBER_FUNCTION_POINTER, "Not valid for kernel mode drivers")
 
@@ -668,6 +674,66 @@ Return Value:
 	//        this call if, for example, you need to know if the oplock was
 	//        actually granted.
 	//
+	PFLT_FILE_NAME_INFORMATION NameInfo = NULL;
+	status = FltGetFileNameInformation(
+		Data,
+		FLT_FILE_NAME_NORMALIZED |
+		FLT_FILE_NAME_QUERY_DEFAULT,
+		&NameInfo);
+	UNICODE_STRING required_extension = RTL_CONSTANT_STRING(L".crypt_lab2");
+	if (!NT_SUCCESS(status))
+	{
+	}
+	else {
+		// Вариант 2022, начало
+		PWSTR extensionStart = wcsrchr(NameInfo->Name.Buffer, L'.');
+		if (extensionStart != NULL)
+		{
+			UNICODE_STRING extension;
+
+			RtlInitUnicodeString(&extension, extensionStart);
+
+			if (RtlEqualUnicodeString(&required_extension, &extension, FALSE)) {
+
+				DbgPrint("");
+				if (Data->Iopb->MajorFunction == IRP_MJ_WRITE) {
+					// здесь - шифрование 
+					// unsigned char* write_data[];
+					unsigned char* hexarray[1024];
+					memset(hexarray, 0, 1024);
+					memcpy(hexarray, (unsigned char*)Data->Iopb->Parameters.Write.WriteBuffer, Data->Iopb->Parameters.Write.Length);
+
+					// Шифрование
+					struct AES_ctx ctx;
+					AES_init_ctx_iv(&ctx, key, iv);
+					AES_CBC_encrypt_buffer(&ctx, hexarray, 1024);
+
+					// memcpy(hexarray, (unsigned char[]) { '1', '2', '3' }, sizeof((unsigned char[]) { '1', '2', '3' })); Проверка работы драйвера
+
+					DbgPrint("");
+					memcpy((unsigned char*)Data->Iopb->Parameters.Write.WriteBuffer, hexarray, Data->Iopb->Parameters.Write.Length);
+				}
+				else if (Data->Iopb->MajorFunction == IRP_MJ_READ) { /*
+					// здесь - расшифровка
+					// unsigned char* read_data = (char*)Data->Iopb->Parameters.Read.ReadBuffer;
+					unsigned char* hexarray[1024];
+					memset(hexarray, 0, 1024);
+					memcpy(hexarray, (unsigned char*)Data->Iopb->Parameters.Read.ReadBuffer, strlen(Data->Iopb->Parameters.Read.ReadBuffer));
+
+					// Расшифование
+					unsigned char key[] = { 0x04, 0x9a, 0x1d, 0x22, 0x0e, 0x28, 0xf0, 0x09, 0xf2, 0xa9, 0xfd, 0xdc, 0x5a, 0x0b, 0x7a, 0x42, 0x1c,
+					0xb5, 0xb6, 0x42, 0xe2, 0xfb, 0x46, 0x4a, 0xd3, 0x86, 0x20, 0xa1, 0xc6, 0x20, 0x74, 0xc6 };
+					unsigned char iv[] = { 0x96, 0x38, 0x72, 0x5e, 0x2b, 0xfc, 0x8a, 0x49, 0xf0, 0x46, 0xc9, 0x85, 0x71, 0xf5, 0xae, 0x2b };
+					struct AES_ctx ctx;
+					AES_init_ctx_iv(&ctx, key, iv);
+					AES_CBC_decrypt_buffer(&ctx, hexarray, 64);
+
+					DbgPrint("");
+					memcpy((unsigned char*)Data->Iopb->Parameters.Read.ReadBuffer, hexarray, strlen(Data->Iopb->Parameters.Read.ReadBuffer));
+				*/} 
+			}
+		}
+	}
 
 	if (PtDoRequestOperationStatus(Data)) {
 
@@ -783,7 +849,7 @@ Return Value:
 
 	PT_DBG_PRINT(PTDBG_TRACE_ROUTINES,
 		("PassThrough!PtPostOperationPassThrough: Entered\n"));
-
+	
 	NTSTATUS status;
 	PFLT_FILE_NAME_INFORMATION NameInfo = NULL;
 	status = FltGetFileNameInformation(
@@ -791,18 +857,41 @@ Return Value:
 		FLT_FILE_NAME_NORMALIZED |
 		FLT_FILE_NAME_QUERY_DEFAULT,
 		&NameInfo);
-	wchar_t* x = L"crypt_lab2";
-	UNICODE_STRING required_extension = RTL_CONSTANT_STRING(x);
+	UNICODE_STRING required_extension = RTL_CONSTANT_STRING(L".crypt_lab2");
 	if (!NT_SUCCESS(status))
 	{
 	}
 	else {
 		// Вариант 2022, начало
-		if (
-			RtlEqualUnicodeString(&required_extension,
-				&NameInfo->Extension, FALSE))
+		PWSTR extensionStart = wcsrchr(NameInfo->Name.Buffer, L'.');
+		if (extensionStart != NULL)
 		{
-			DbgPrint("");
+			UNICODE_STRING extension;
+
+			RtlInitUnicodeString(&extension, extensionStart);
+
+			if (RtlEqualUnicodeString(&required_extension, &extension, FALSE)) {
+
+				DbgPrint("");
+				if (Data->Iopb->MajorFunction == IRP_MJ_WRITE) 
+				{
+				}
+				else if (Data->Iopb->MajorFunction == IRP_MJ_READ) {
+					// здесь - расшифровка
+					// unsigned char* read_data = (char*)Data->Iopb->Parameters.Read.ReadBuffer;
+					unsigned char* hexarray[1024];
+					memset(hexarray, 0, 1024);
+					memcpy(hexarray, (unsigned char*)Data->Iopb->Parameters.Read.ReadBuffer, Data->Iopb->Parameters.Read.Length);
+
+					// Расшифование
+					struct AES_ctx ctx;
+					AES_init_ctx_iv(&ctx, key, iv);
+					AES_CBC_decrypt_buffer(&ctx, hexarray, 1024);
+
+					DbgPrint("");
+					memcpy((unsigned char*)Data->Iopb->Parameters.Read.ReadBuffer, hexarray, Data->Iopb->Parameters.Read.Length);
+				}
+			}
 		}
 	}
 

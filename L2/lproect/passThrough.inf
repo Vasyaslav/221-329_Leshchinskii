@@ -38,8 +38,8 @@ DelFiles   = MiniFilter.DriverFiles
 LegacyUninstall=1
 
 [DefaultUninstall.NTamd64.Services]
-LegacyUninstall=1
 DelService = %ServiceName%,0x200      ;Ensure service is stopped before deleting
+LegacyUninstall=1
 
 ;
 ; Services Section
@@ -94,5 +94,5 @@ DiskId1                 = "PassThrough Device Installation Disk"
 ;Instances specific information.
 DefaultInstance         = "PassThrough Instance"
 Instance1.Name          = "PassThrough Instance"
-Instance1.Altitude      = "370030"
+Instance1.Altitude      = "140101"
 Instance1.Flags         = 0x0              ; Allow all attachments
