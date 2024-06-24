@@ -1,0 +1,2 @@
+^T:\EDUC\4 SEM\CRYPTOGRAPHY\L3\CONSOLEAPPLICATION\ENCLAVE\ENCLAVE.EDL
+"T:\educ\4 sem\Cryptography\L3\ConsoleApplication\packages\Intel.SGX.SDK.2.24.100.3\build\native\\bin\win32\Release\sgx_edger8r.exe" --untrusted ".\..\Enclave\Enclave.edl" --search-path ".\..\Enclave;T:\educ\4 sem\Cryptography\L3\ConsoleApplication\packages\Intel.SGX.SDK.2.24.100.3\build\native\\include"
